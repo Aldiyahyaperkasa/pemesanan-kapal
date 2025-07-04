@@ -61,57 +61,17 @@
             <div class="navbar-content">
                 <ul class="pc-navbar">
                     <li class="pc-item">
-                        <a href="<?= site_url('/admin/index') ?>" class="pc-link">
+                        <a href="<?= site_url('/pemilik_kapal/index') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
-                    </li>
-                    <li class="pc-item pc-hasmenu">
-                        <a href="#" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span>
-                            <span class="pc-mtext">
-                                Kelola Akun
-                            </span>
-                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
-                        </a>
-                        <ul class="pc-submenu">
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_admin/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                                    Akun Admin
-                                </a>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemilik_kapal/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                                    Akun Pemilik Kapal
-                                </a>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemesan/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                                    Akun Pemesan
-                                </a>
-                            </li>                        
-                        </ul>
-                    </li>                   
+                    </li>                    
                     <li class="pc-item">
-                        <a href="<?= site_url('/kapal/index') ?>" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-ship"></i></span>
-                            <span class="pc-mtext">Kelola Kapal</span>
-                        </a>
-                    </li>    
-                    <li class="pc-item">
-                        <a href="<?= site_url('/kelola-pesanan/index') ?>" class="pc-link">
+                        <a href="<?= base_url('pemilik_kapal/pemesanan') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-folder-plus"></i></span>
                             <span class="pc-mtext">Kelola Pemesanan</span>
                         </a>
-                    </li>    
-                    <li class="pc-item">
-                        <a href="../dashboard/index.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-file-report"></i></span>
-                            <span class="pc-mtext">Laporan</span>
-                        </a>
-                    </li>     
+                    </li>        
                     <li class="pc-item">
                         <a href="<?= site_url('/login/logout') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-file-report"></i></span>

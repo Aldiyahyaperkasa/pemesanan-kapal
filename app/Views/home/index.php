@@ -54,7 +54,8 @@
 
     .hero {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), 
-                  url('<?= base_url('assets/gambar/banner.jpeg') ?>') center/cover no-repeat;
+                  url('<?= base_url('assets/gambar/bb 2.png') ?>') center/cover no-repeat;
+      background-position: left;
       height: 100vh;
       color: white;
       display: flex;
@@ -181,9 +182,9 @@
   <!-- Hero -->
   <section class="hero" id="home">
     <div data-aos="fade-up">
-      <h1 class="display-4 fw-semibold">Jelajahi Pulau Beras Basah</h1>
+      <!-- <h1 class="display-4 fw-semibold">Jelajahi Pulau Beras Basah</h1>
       <p class="lead">Nikmati keindahan tropis dan perjalanan laut yang menyenangkan</p>
-      <a href="#kapal" class="btn btn-cta mt-3">Lihat Jadwal & Harga</a>
+      <a href="#kapal" class="btn btn-cta mt-3">Lihat Jadwal & Harga</a> -->
     </div>
   </section>
 
@@ -195,83 +196,78 @@
         <p class="text-muted">Pilih kapal yang sesuai dengan kebutuhan perjalananmu</p>
       </div>
       <div class="row g-4">
-        <!-- Kapal 1 -->
-        <div class="col-md-4" data-aos="fade-up">
-          <div class="card h-100">
-            <img src="<?= base_url('assets/gambar/logolayarbasah.png') ?>" class="card-img-top" alt="Kapal Tradisional">
-            <div class="card-body">
-              <h5 class="card-title">Kapal Tradisional</h5>
-              <p>Keberangkatan: 08.00 & 13.00<br>Kapasitas: 10 orang</p>
-              <p class="fw-bold">Rp 50.000 / orang</p>
-              <a href="#kontak" class="btn btn-outline-primary w-100">Pesan Sekarang</a>
+        <?php foreach ($kapal as $k) : ?>
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="card h-100">
+              <div class="ratio ratio-1x1">
+                <img src="<?= base_url('assets/gambar_kapal/' . $k['foto_kapal']) ?>" class="img-fluid object-fit-cover w-100 h-100" alt="<?= esc($k['nama_kapal']) ?>">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><?= esc($k['nama_kapal']) ?></h5>
+
+                <p>
+                  <?= esc($k['deskripsi']) ?><br>
+                  Kapasitas Maksimal: <?= esc($k['max_penumpang']) ?> orang
+                </p>
+
+                <?php if ($k['jenis_kapal'] == 'perorangan') : ?>
+                  <p class="fw-bold">Rp <?= number_format($k['harga'], 0, ',', '.') ?> / orang</p>
+                <?php else : ?>
+                  <p class="fw-bold">Rp <?= number_format($k['harga'], 0, ',', '.') ?> / kapal (max <?= $k['max_penumpang'] ?> orang)</p>
+                <?php endif; ?>
+
+                <!-- <a href="<?= base_url('pesan/cek_akun/' . $k['id_kapal']) ?>" class="btn btn-outline-primary w-100">Pesan Sekarang</a>                 -->
+                <!-- <a href="<?= base_url('pesan/logout/' . $k['id_kapal']) ?>" class="btn btn-outline-primary w-100">Pesan Sekarang</a> -->
+                <a href="<?= base_url('pesan/reset/' . $k['id_kapal']) ?>" class="btn btn-outline-primary w-100">Pesan Sekarang</a>
+
+
+                
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Kapal 2 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <img src="<?= base_url('assets/gambar/logolayarbasah.png') ?>" class="card-img-top" alt="Speedboat">
-            <div class="card-body">
-              <h5 class="card-title">Speedboat Ekspres</h5>
-              <p>Keberangkatan: 09.00 & 15.00<br>Kapasitas: 6 orang</p>
-              <p class="fw-bold">Rp 100.000 / orang</p>
-              <a href="#kontak" class="btn btn-outline-primary w-100">Pesan Sekarang</a>
-            </div>
-          </div>
-        </div>
-        <!-- Kapal 3 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card h-100">
-            <img src="<?= base_url('assets/gambar/logolayarbasah.png') ?>" class="card-img-top" alt="Charter">
-            <div class="card-body">
-              <h5 class="card-title">Charter Pribadi</h5>
-              <p>Waktu fleksibel<br>Kapasitas: 6–12 orang</p>
-              <p class="fw-bold">Rp 500.000 / kapal</p>
-              <a href="#kontak" class="btn btn-outline-primary w-100">Pesan Sekarang</a>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
 
+
   <!-- Panduan -->
-<section id="panduan" class="py-5 bg-white">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="fade-up">
-      <h2 class="section-title">Panduan Pemesanan</h2>
-      <p class="text-muted">Ikuti langkah mudah berikut untuk memesan kapal</p>
+  <section id="panduan" class="py-5 bg-white">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Panduan Pemesanan</h2>
+        <p class="text-muted">Ikuti langkah mudah berikut untuk memesan kapal</p>
+      </div>
+      <div class="row text-center g-4">
+
+        <div class="col-md-3" data-aos="fade-up">
+          <div class="icon-circle mx-auto mb-3"><i class="bi bi-cart fs-3"></i></div>
+          <h5>Pilih Kapal</h5>
+          <p>Klik tombol <strong>Pesan Sekarang</strong> pada kapal pilihanmu di halaman utama.</p>
+        </div>
+
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon-circle mx-auto mb-3"><i class="bi bi-person-plus fs-3"></i></div>
+          <h5>Isi Data & Akun</h5>
+          <p>Lengkapi form pemesanan dan buat akun untuk login ke dashboard.</p>
+        </div>
+
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon-circle mx-auto mb-3"><i class="bi bi-wallet2 fs-3"></i></div>
+          <h5>Pembayaran</h5>
+          <p>Login ke dashboard untuk melihat nominal & rekening, lalu <strong>upload bukti bayar</strong>.</p>
+        </div>
+
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon-circle mx-auto mb-3"><i class="bi bi-clock-history fs-3"></i></div>
+          <h5>Verifikasi</h5>
+          <p>Tunggu verifikasi dari admin. Setelah itu, tiket akan dikirim via WhatsApp & muncul di dashboard.</p>
+        </div>
+
+      </div>
     </div>
-    <div class="row text-center g-4">
-
-      <div class="col-md-3" data-aos="fade-up">
-        <div class="icon-circle mx-auto mb-3"><i class="bi bi-cart fs-3"></i></div>
-        <h5>Pilih Kapal</h5>
-        <p>Klik tombol <strong>Pesan Sekarang</strong> pada kapal pilihanmu di halaman utama.</p>
-      </div>
-
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-        <div class="icon-circle mx-auto mb-3"><i class="bi bi-person-plus fs-3"></i></div>
-        <h5>Isi Data & Akun</h5>
-        <p>Lengkapi form pemesanan dan buat akun untuk login ke dashboard.</p>
-      </div>
-
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-        <div class="icon-circle mx-auto mb-3"><i class="bi bi-wallet2 fs-3"></i></div>
-        <h5>Pembayaran</h5>
-        <p>Login ke dashboard untuk melihat nominal & rekening, lalu <strong>upload bukti bayar</strong>.</p>
-      </div>
-
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-        <div class="icon-circle mx-auto mb-3"><i class="bi bi-clock-history fs-3"></i></div>
-        <h5>Verifikasi</h5>
-        <p>Tunggu verifikasi dari admin. Setelah itu, tiket akan dikirim via WhatsApp & muncul di dashboard.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
+  </section>
 
 
   <section id="galeri" class="py-5 bg-light">

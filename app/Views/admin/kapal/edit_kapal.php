@@ -11,6 +11,7 @@
     <div class="card shadow">
         <div class="card-body p-5">
             <form action="<?= base_url('kapal/edit/' . $kapal['id_kapal']) ?>" method="post" enctype="multipart/form-data">        
+            <?= csrf_field() ?>
                 <div class="mb-3">
                     <label for="id_pemilik" class="form-label">Pemilik Kapal</label>
                     <select class="form-select rounded-pill" id="id_pemilik" name="id_pemilik" required>

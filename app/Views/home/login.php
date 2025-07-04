@@ -20,77 +20,51 @@
 
     <!-- [Template mantis] -->
     <link rel="stylesheet" href="<?= base_url('assets/mantis/css/style.css') ?>" id="main-style-link" >
-    <link rel="stylesheet" href="<?= base_url('assets/mantis/css/style-preset.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/mantis/css/style-preset.css') ?>">  
 
 </head>
 
 
-<body>
+<body class="bg-light" style="font-family: 'Poppins', sans-serif;">
+
+    <!-- Loader -->
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
         </div>
     </div>
 
-    <div class="auth-main">
-        <div class="auth-wrapper v3">
-            <div class="auth-form">
-                <div class="auth-header">
-                    <a href="#"><img src="../assets/images/logo-dark.svg" alt="img"></a>
+    <!-- Login Container -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow border-0" style="width: 380px; border-radius: 16px;">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" style="height: 80px;">
+                    <h4 class="mt-3 fw-semibold text-dark">Selamat Datang</h4>
+                    <p class="text-muted small">Silakan masuk untuk melanjutkan</p>
                 </div>
-                <div class="card my-5">
-                    <div class="card-body">
-                        <form action="<?= base_url('login/submit') ?>" method="post">
-                            <div class="d-flex justify-content-between align-items-end mb-4">
-                                <h3 class="mb-0"><b>Login</b></h3>
-                                <a href="#" class="link-primary">Don't have an account?</a>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="text" name="username" class="form-control" placeholder="Email Address" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password" required>
-                            </div>
-                            <div class="d-flex mt-1 justify-content-between">
-                                <div class="form-check">
-                                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
-                                    <label class="form-check-label text-muted" for="customCheckc1">Keep me sign in</label>
-                                </div>
-                                <h5 class="text-secondary f-w-400">Forgot Password?</h5>
-                            </div>
-                            <div class="d-grid mt-4">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div> 
-                        </form>                        
+
+                <form action="<?= base_url('login/submit') ?>" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" id="username" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Masukkan username" required>
                     </div>
-                </div>                
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Masukkan password" required>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow">Login</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
-    <!-- [ Main Content ] end -->
 
-
-    <!-- Required Js -->
-
-    <script src="<?= base_url() ?>assets/mantis/js/plugins/bootstrap.min.js"></script>
-    <!-- <script src="../assets/js/fonts/custom-font.js"></script>
-    <script src="../assets/js/pcoded.js"></script>
-    <script src="../assets/js/plugins/feather.min.js"></script> -->
-
-    <script>layout_change('light');</script>
-        
-    <script>change_box_container('false');</script>
-    
-    <script>layout_rtl_change('false');</script>    
-    
-    <script>preset_change("preset-1");</script>    
-    
-    <script>font_change("Public-Sans");</script>
-    
-        
-    
 </body>
+
 
 </html>

@@ -12,4 +12,6 @@ class PemesanModel extends Model
         'username', 'password', 'nama_lengkap', 'email', 'no_hp'
     ];
 
+    protected $returnType = 'array'; // agar hasil find() berupa array
+
 }

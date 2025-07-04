@@ -102,15 +102,15 @@
                         </a>
                     </li>    
                     <li class="pc-item">
-                        <a href="../dashboard/index.html" class="pc-link">
+                        <a href="<?= site_url('/kelola-pesanan/index') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-folder-plus"></i></span>
                             <span class="pc-mtext">Kelola Pemesanan</span>
                         </a>
                     </li>    
                     <li class="pc-item">
-                        <a href="../dashboard/index.html" class="pc-link">
+                        <a href="<?= site_url('/login/logout') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-file-report"></i></span>
-                            <span class="pc-mtext">Laporan</span>
+                            <span class="pc-mtext">Logout</span>
                         </a>
                     </li>    
                     <!-- <li class="pc-item pc-hasmenu">

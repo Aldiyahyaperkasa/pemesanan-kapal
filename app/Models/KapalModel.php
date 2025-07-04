@@ -26,7 +26,7 @@ class KapalModel extends Model
 {
     return $this->select('kapal.*, pemilik_kapal.nama_lengkap as nama_pemilik')
                 ->join('pemilik_kapal', 'pemilik_kapal.id_pemilik = kapal.id_pemilik', 'left')
-                ->orderBy('kapal.id_kapal', 'desc')
+                ->orderBy('kapal.id_kapal', 'asc')
                 ->paginate($perPage, 'default', $currentPage);
 }
 

@@ -129,8 +129,8 @@ class KapalController extends Controller
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required|in_list[perorangan,rombongan]',
             'harga' => 'required|numeric',
-            'max_penumpang' => 'required|integer',
-            'foto_kapal' => 'is_image[foto_kapal]|max_size[foto_kapal,2048]',
+            'max_penumpang' => 'required|integer',            
+            'foto_kapal' => 'permit_empty|is_image[foto_kapal]|max_size[foto_kapal,2048]',
             'tersedia' => 'required|in_list[0,1]'
         ])) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
