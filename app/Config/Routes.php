@@ -121,8 +121,10 @@ $routes->get('pemesan/riwayat', 'PemesanController::riwayat');
 
 $routes->get('pemesan/edit/(:num)', 'PemesanController::edit/$1');
 $routes->post('pemesan/update/(:num)', 'PemesanController::update/$1');
-$routes->get('pemesan/proses-upload-bukti/(:num)', 'PemesanController::uploadBukti/$1');
-$routes->post('pemesan/proses-upload-bukti/(:num)', 'PemesanController::prosesUploadBukti/$1');
+$routes->get('pemesan/hapus/(:num)', 'PemesanController::hapus/$1');
+$routes->post('pemesan/upload-bukti/(:num)', 'PemesanController::prosesUploadBukti/$1');
+
+
 
 
 

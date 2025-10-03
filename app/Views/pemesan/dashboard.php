@@ -34,6 +34,21 @@
             font-size: 1.8rem;
             color: #0077b6 !important;
         }
+        .card-tourism {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .header-banner {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            color: white;
+            padding: 1rem 2rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
     </style>
 
 </head>
@@ -155,42 +170,127 @@
     </header>
 
 
-    <div class="pc-container">
-        <div class="pc-content">
- 
-            <div class="row">                    
-                <div class="container mt-4">
-                    <h3>Dashboard Pemesan</h3>
+<div class="pc-container">
+    <div class="pc-content">
 
-                    <?php if (!$pemesanan): ?>
-                        <div class="alert alert-info">Belum ada data pemesanan yang ditemukan.</div>
+        <div class="row justify-content-center">
 
-                    <?php elseif ($pemesanan['status_pemilik'] === 'diterima' && 
-                                $pemesanan['status_admin'] === 'menunggu' && 
-                                empty($pemesanan['bukti_bayar'])): ?>
-                        
-                        <div class="alert alert-warning">Silakan upload bukti pembayaran Anda untuk memproses tiket.</div>
+            <div class="container ">
+                <?php if ($pemesanan): ?>
+                    <?php if ($pemesanan['status_pemilik'] == 'menunggu'): ?>
+                        <div class="card-tourism">
+                            <div class="header-banner">Menunggu konfirmasi dari pemilik kapal</div>
+                            <div class="row p-4">
+                                <div class="col-md-4">
+                                    <img src="<?= base_url('assets/gambar_kapal/' . $kapal['foto_kapal']) ?>" class="img-fluid rounded" alt="gambar kapal">
+                                </div>
+                                <div class="col-md-8">
+                                    <table class="table ">
+                                        <tr><th>Nama Kapal</th><td><?= esc($kapal['nama_kapal']) ?></td></tr>
+                                        <tr><th>Nama Pemesan</th><td><?= esc($pemesan['nama_lengkap']) ?></td></tr>
+                                        <tr><th>Email</th><td><?= esc($pemesan['email']) ?></td></tr>
+                                        <tr><th>No HP</th><td><?= esc($pemesan['no_hp']) ?></td></tr>
+                                        <tr><th>Tanggal Berangkat</th><td><?= esc($pemesanan['tanggal_berangkat']) ?></td></tr>
+                                        <tr><th>Tanggal Kembali</th><td><?= esc($pemesanan['tanggal_kembali']) ?></td></tr>
+                                        <tr><th>Jumlah Penumpang</th><td><?= esc($pemesanan['jumlah_penumpang']) ?></td></tr>
+                                        <tr><th>Total Harga</th><td>Rp <?= number_format($pemesanan['total_harga'], 0, ',', '.') ?></td></tr>
+                                    </table>
+                                    <a href="<?= base_url('pemesan/edit/' . $pemesanan['id_pemesanan']) ?>" class="btn btn-warning">Edit Data Pemesanan</a>
+                                    <a href="<?= base_url('pemesan/hapus/' . $pemesanan['id_pemesanan']) ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus pesanan ini?')">Hapus</a>
 
-                        <form action="<?= base_url('pemesan/proses-upload-bukti/' . $pemesanan['id_pemesanan']) ?>" method="post" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="bukti_bayar" class="form-label">Upload Bukti Bayar</label>
-                                <input type="file" name="bukti_bayar" id="bukti_bayar" class="form-control" required>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </form>
+                        </div>        
 
-                    <?php elseif ($pemesanan['status_admin'] === 'menunggu'): ?>
-                        
-                        <div class="alert alert-info">Pesanan Anda sedang diproses. Anda masih dapat mengedit pesanan ini.</div>
-                        <a href="<?= base_url('pemesan/edit/' . $pemesanan['id_pemesanan']) ?>" class="btn btn-primary">Edit Pemesanan</a>
+                    <?php elseif ($pemesanan['status_pemilik'] == 'diterima' && $pemesanan['status_admin'] == 'menunggu' && empty($pemesanan['bukti_bayar'])): ?>
+                        <div class="card-tourism mt-5">
+                            <div class="header-banner">Upload Bukti Pembayaran Anda</div>
+                            <div class="row g-0 p-4">
+                                <div class="col-md-5 text-center">
+                                    <img src="<?= base_url('assets/gambar_kapal/' . $kapal['foto_kapal']) ?>" class="img-fluid img-kapal" alt="gambar kapal">
+                                    <p class="mt-2 mb-0 text-muted"><small>Kapal: <?= esc($kapal['nama_kapal']) ?></small></p>
+                                </div>
+                                <div class="col-md-7 ps-md-4 pt-3 pt-md-0">
+                                    <p class="mb-3">Pemesanan Anda telah disetujui oleh pemilik kapal. Silakan unggah bukti pembayaran untuk diproses oleh admin.</p>
 
-                    <?php else: ?>
-                        <div class="alert alert-success">Pesanan Anda sedang diproses. Tidak ada tindakan yang perlu dilakukan saat ini.</div>
+                                    <form action="<?= base_url('pemesan/upload-bukti/' . $pemesanan['id_pemesanan']) ?>" method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label for="bukti_bayar" class="form-label">Bukti Pembayaran (JPG, PNG, PDF)</label>
+                                            <input type="file" name="bukti_bayar" id="bukti_bayar" class="form-control" accept=".jpg,.jpeg,.png,.pdf" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-upload">
+                                            <i class="feather icon-upload"></i> Upload Bukti Sekarang
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php elseif ($pemesanan['status_pemilik'] == 'diterima' && $pemesanan['status_admin'] == 'menunggu' && !empty($pemesanan['bukti_bayar'])): ?>
+                        <div class="card-tourism">
+                            <div class="header-banner">Menunggu Konfirmasi Admin</div>
+                            <div class="row g-0 p-4">
+                                <div class="col-md-5 text-center">
+                                    <img src="<?= base_url('assets/gambar_kapal/' . $kapal['foto_kapal']) ?>" class="img-fluid img-kapal" alt="gambar kapal">
+                                    <p class="mt-2 mb-0 text-muted"><small>Kapal: <?= esc($kapal['nama_kapal']) ?></small></p>
+                                </div>
+                                <div class="col-md-7 ps-md-4 pt-3 pt-md-0">
+                                    <p class="mb-3">Terima kasih! Bukti pembayaran Anda telah dikirim. Silakan tunggu konfirmasi dari admin.</p>
+
+                                    <h6 class="fw-bold mb-2">Bukti Pembayaran:</h6>
+                                    <?php
+                                        $fileUrl = base_url('uploads/bukti_bayar/' . $pemesanan['bukti_bayar']);
+                                    ?>
+                                    <a href="<?= $fileUrl ?>" target="_blank" class="btn btn-outline-primary">
+                                        <i class="feather icon-file-text"></i> Lihat Bukti Pembayaran
+                                    </a>
+
+                                    <div class="mt-3">
+                                        <table class="table table-sm">
+                                            <tr><th>Nama Pemesan</th><td><?= esc($pemesan['nama_lengkap']) ?></td></tr>
+                                            <tr><th>Email</th><td><?= esc($pemesan['email']) ?></td></tr>
+                                            <tr><th>No HP</th><td><?= esc($pemesan['no_hp']) ?></td></tr>
+                                            <tr><th>Tanggal Berangkat</th><td><?= esc($pemesanan['tanggal_berangkat']) ?></td></tr>
+                                            <tr><th>Tanggal Kembali</th><td><?= esc($pemesanan['tanggal_kembali']) ?></td></tr>
+                                            <tr><th>Jumlah Penumpang</th><td><?= esc($pemesanan['jumlah_penumpang']) ?></td></tr>
+                                            <tr><th>Total Harga</th><td>Rp <?= number_format($pemesanan['total_harga'], 0, ',', '.') ?></td></tr>
+                                            <tr><th>Status</th><td><span class="badge bg-warning text-dark">Menunggu Konfirmasi Admin</span></td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php elseif ($pemesanan['status_pemilik'] == 'diterima' && $pemesanan['status_admin'] == 'terverifikasi'): ?>
+                        <div class="card-tourism">
+                            <div class="header-banner">Detail Pemesanan</div>
+                            <div class="row p-4">
+                                <div class="col-md-4">
+                                    <img src="<?= base_url('assets/gambar_kapal/' . $kapal['foto_kapal']) ?>" class="img-fluid rounded" alt="gambar kapal">
+                                </div>
+                                <div class="col-md-8">
+                                    <table class="table table-bordered">
+                                        <tr><th>Nama Kapal</th><td><?= esc($kapal['nama_kapal']) ?></td></tr>
+                                        <tr><th>Nama Pemesan</th><td><?= esc($pemesan['nama_lengkap']) ?></td></tr>
+                                        <tr><th>Tanggal Berangkat</th><td><?= esc($pemesanan['tanggal_berangkat']) ?></td></tr>
+                                        <tr><th>Tanggal Kembali</th><td><?= esc($pemesanan['tanggal_kembali']) ?></td></tr>
+                                        <tr><th>Jumlah Penumpang</th><td><?= esc($pemesanan['jumlah_penumpang']) ?></td></tr>
+                                        <tr><th>Total Harga</th><td>Rp <?= number_format($pemesanan['total_harga'], 0, ',', '.') ?></td></tr>
+                                        <tr><th>Status</th><td><span class="badge bg-success">Telah Dikonfirmasi</span></td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     <?php endif; ?>
-                </div>
+                <?php else: ?>
+                    <div class="alert alert-info">Belum ada pemesanan.</div>
+                <?php endif; ?>
             </div>
+
         </div>
     </div>
+</div>
+
 
 
     

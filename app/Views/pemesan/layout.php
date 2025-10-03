@@ -34,6 +34,21 @@
             font-size: 1.8rem;
             color: #0077b6 !important;
         }
+        .card-tourism {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .header-banner {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            color: white;
+            padding: 1rem 2rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }        
     </style>
 
 </head>
