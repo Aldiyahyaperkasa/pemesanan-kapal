@@ -11,6 +11,6 @@ class Home extends BaseController
         $kapalModel = new \App\Models\KapalModel();
         $data['kapal'] = $kapalModel->where('tersedia', true)->findAll();
 
-        return view('home/index', $data);
+        return view('landing_page', $data);
     }
 }

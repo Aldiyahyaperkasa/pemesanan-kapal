@@ -20,7 +20,6 @@
                         <tr>
                             <th style="width: 50px;">No</th>
                             <th>Nama Kapal</th>
-                            <th>Pemilik Kapal</th>
                             <th>Jenis Kapal</th>
                             <th>Harga</th>
                             <th>Maks Penumpang</th>
@@ -36,7 +35,6 @@
                                 <tr>
                                     <td><?= $index + 1 + ($currentPage - 1) * $perPage ?></td>
                                     <td class="fw-semibold"><?= esc($k['nama_kapal']) ?></td>
-                                    <td><?= esc($k['nama_pemilik']) ?></td>
                                     <td><?= esc($k['jenis_kapal']) ?></td>
                                     <td>Rp <?= number_format($k['harga'], 2, ',', '.') ?></td>
                                     <td><?= esc($k['max_penumpang']) ?></td>

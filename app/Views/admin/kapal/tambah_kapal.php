@@ -11,17 +11,7 @@
     <div class="card shadow">
         <div class="card-body p-5">
             <form action="<?= base_url('kapal/tambah') ?>" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="id_pemilik" class="form-label">Pemilik Kapal</label>
-                    <select class="form-select rounded-pill" id="id_pemilik" name="id_pemilik" required>
-                        <option value="" disabled selected>Pilih Pemilik Kapal</option>
-                        <?php foreach ($pemilik as $p): ?>
-                            <option value="<?= $p['id_pemilik'] ?>" <?= old('id_pemilik') == $p['id_pemilik'] ? 'selected' : '' ?>>
-                                <?= esc($p['nama_lengkap']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>            
+         
                 <div class="mb-3">
                     <label for="nama_kapal" class="form-label">Nama Kapal</label>
                     <input type="text" class="form-control rounded-pill" id="nama_kapal" name="nama_kapal" required>

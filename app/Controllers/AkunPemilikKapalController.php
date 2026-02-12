@@ -74,7 +74,28 @@ class AkunPemilikKapalController extends BaseController
 
     public function hapus_akun($id)
     {
+        $db = db_connect();
+
+        $kapal = $db->table('kapal')->where('id_pemilik', $id)->get()->getResultArray();
+
+        if (!empty($kapal)) {
+            foreach ($kapal as $k) {
+                $cekPemesanan = $db->table('pemesanan')->where('id_kapal', $k['id_kapal'])->countAllResults();
+                if ($cekPemesanan > 0) {
+                    return redirect()
+                            ->back()
+                            ->with('error', 'data tidak dapat dihapus dikarenakan pemilik ini memiliki kapal yang sudah memiliki pesanan.');
+                }
+            }
+
+            foreach ($kapal as $k) {
+                $db->table('kapal')->delete(['id_kapal' => $k['id_kapal']]);
+            }
+        }
+
         $this->pemilikModel->delete($id);
-        return redirect()->to('/akun_pemilik_kapal/index');
+
+        return redirect()->to('/akun_pemilik_kapal/index')
+                        ->with('success', 'Akun pemilik kapal berhasil dihapus.');
     }
 }

@@ -38,7 +38,7 @@
                                         <a href="<?= base_url('akun_admin/edit/' . $admin['id_admin']) ?>" class="btn btn-sm btn-outline-primary rounded-pill me-2" title="Edit Admin">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <a href="<?= base_url('akun_admin/hapus_akun/' . $admin['id_admin']) ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="return confirm('Yakin ingin menghapus akun ini?')" title="Hapus Admin">
+                                        <a href="<?= base_url('akun_admin/hapus/' . $admin['id_admin']) ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="return confirm('Yakin ingin menghapus akun ini?')" title="Hapus Admin">
                                             <i class="bi bi-trash"></i>
                                         </a>
                                     </td>

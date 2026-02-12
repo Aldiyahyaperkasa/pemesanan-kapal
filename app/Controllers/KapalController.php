@@ -48,7 +48,6 @@ class KapalController extends Controller
 
         // Validasi input
         if (!$this->validate([
-            'id_pemilik' => 'required|integer',
             'nama_kapal' => 'required',
             'jenis_kapal' => 'required|in_list[perorangan,rombongan]',
             'harga' => 'required|numeric',
@@ -80,7 +79,6 @@ class KapalController extends Controller
 
         // Simpan ke database
         $saved = $this->kapalModel->save([
-            'id_pemilik' => $this->request->getPost('id_pemilik'),
             'nama_kapal' => $this->request->getPost('nama_kapal'),
             'jenis_kapal' => $this->request->getPost('jenis_kapal'),
             'harga' => $this->request->getPost('harga'),

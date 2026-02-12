@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Models;
-use CodeIgniter\Model;
 
+use CodeIgniter\Model;
 
 class AdminModel extends Model
 {
-    protected $table = 'admin';
-    protected $primaryKey = 'id_admin';
-    protected $allowedFields = [
-        'username', 'password', 'nama_lengkap', 'email', 'no_hp'
+    protected $table            = 'admin';
+    protected $primaryKey       = 'id_admin';
+    protected $allowedFields    = [
+        'username',
+        'password',
+        'nama_lengkap',
+        'email',
+        'no_hp'
     ];
 
+    protected $useTimestamps = false;
 }

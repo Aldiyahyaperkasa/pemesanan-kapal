@@ -34,6 +34,79 @@
             font-size: 1.8rem;
             color: #0077b6 !important;
         }
+
+.hover-shadow:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.card {
+    transition: all 0.3s ease;
+}
+
+/* ===== DASHBOARD MODERN STYLE ===== */
+
+.dashboard-card {
+    border-radius: 12px !important;
+    border: 1px solid #eef1f6;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+    background: #ffffff;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.bg-soft-primary { background: rgba(59,130,246,0.1); color:#3b82f6; }
+.bg-soft-success { background: rgba(34,197,94,0.1); color:#22c55e; }
+.bg-soft-warning { background: rgba(245,158,11,0.1); color:#f59e0b; }
+.bg-soft-danger  { background: rgba(239,68,68,0.1); color:#ef4444; }
+
+.section-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.clean-progress {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.clean-progress-bar {
+    height: 6px;
+    border-radius: 10px;
+}
+
+.quick-btn {
+    border-radius: 10px !important;
+    font-weight: 500;
+}
+
     </style>
 
 </head>
@@ -52,7 +125,7 @@
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="<?= site_url('/admin/index') ?>"  class="b-brand text-primary navbar-brand">
+                <a href="<?= site_url('/admin/dashboard') ?>"  class="b-brand text-primary navbar-brand">
                     <img src="<?= base_url('assets/gambar/logolayarbasah.png') ?>" class="img-fluid w-25" alt="logo layar basah">
                     layar basah
                 </a>
@@ -61,39 +134,32 @@
             <div class="navbar-content">
                 <ul class="pc-navbar">
                     <li class="pc-item">
-                        <a href="<?= site_url('/admin/index') ?>" class="pc-link">
+                        <a href="<?= site_url('/admin/dashboard') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
                     </li>
                     <li class="pc-item pc-hasmenu">
-                        <a href="#" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span>
-                            <span class="pc-mtext">
-                                Kelola Akun
-                            </span>
+                        <a href="#" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-menu"></i></span>
+                            <span class="pc-mtext">Kelola Akun</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_admin/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
+                            <li class="pc-item">
+                                <a class="pc-link" href="<?= site_url('admin/kelola-akun/admin') ?>">
+                                    <span class="pc-micon"><i class="ti ti-user"></i></span>
                                     Akun Admin
                                 </a>
                             </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemilik_kapal/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
+                            <li class="pc-item">
+                                <a class="pc-link" href="<?= site_url('admin/kelola-akun/pemilik-kapal') ?>">
+                                    <span class="pc-micon"><i class="ti ti-users"></i></span>
                                     Akun Pemilik Kapal
                                 </a>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemesan/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                                    Akun Pemesan
-                                </a>
-                            </li>                        
+                            </li>                      
                         </ul>
-                    </li>                   
+                    </li>            
                     <li class="pc-item">
                         <a href="<?= site_url('/kapal/index') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-ship"></i></span>
@@ -197,94 +263,126 @@
 
     <div class="pc-container">
         <div class="pc-content">
- 
-            <div class="row">
-                <!-- [ sample-page ] start -->
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
-                        <h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i
-                                class="ti ti-trending-up"></i> 59.3%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span> this year
-                        </p>
+
+            <div class="row justify-content-center">
+
+                <div class="container-fluid py-4">
+
+                    <!-- HEADER -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h3 class="fw-bold mb-1">Dashboard Admin</h3>
+                            <p class="text-muted mb-0">Ringkasan sistem pemesanan kapal</p>
+                        </div>
+                        <div class="text-muted small">
+                            <?= date('d F Y') ?>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Users</h6>
-                        <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                class="ti ti-trending-up"></i> 70.5%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span> this year</p>
+
+                    <!-- ================= STATISTICS CARDS ================= -->
+                    <div class="row g-4 mb-4">
+
+                        <?php
+                        $cards = [
+                            ['title'=>'Total Kapal','value'=>$totalKapal ?? 0,'icon'=>'ti-ship','class'=>'bg-soft-primary'],
+                            ['title'=>'Total Pemesan','value'=>$totalPemesan ?? 0,'icon'=>'ti-users','class'=>'bg-soft-success'],
+                            ['title'=>'Pemilik Kapal','value'=>$totalPemilik ?? 0,'icon'=>'ti-user-cog','class'=>'bg-soft-warning'],
+                            ['title'=>'Total Pemesanan','value'=>$totalPemesanan ?? 0,'icon'=>'ti-folder','class'=>'bg-soft-danger'],
+                        ];
+                        ?>
+
+                        <?php foreach($cards as $c): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card dashboard-card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="stat-label"><?= $c['title'] ?></div>
+                                        <div class="stat-number"><?= $c['value'] ?></div>
+                                    </div>
+                                    <div class="icon-box <?= $c['class'] ?>">
+                                        <i class="ti <?= $c['icon'] ?>"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <?php endforeach; ?>
+
                     </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                        <h4 class="mb-3">18,800 <span class="badge bg-light-warning border border-warning"><i
-                                class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span> this year</p>
+
+
+                    <!-- ================= STATUS + ACTIVITY ================= -->
+                    <div class="row g-4 mb-4">
+
+                        <!-- STATUS -->
+                        <div class="card dashboard-card h-100">
+                            <div class="card-body">
+                                <div class="section-title mb-4">Status Pemesanan</div>
+
+                                <?php
+                                $statuses = [
+                                    ['label'=>'Menunggu Verifikasi','value'=>$menunggu ?? 0,'percent'=>$persenMenunggu ?? 0,'color'=>'#f59e0b'],
+                                    ['label'=>'Terverifikasi','value'=>$terverifikasi ?? 0,'percent'=>$persenTerverifikasi ?? 0,'color'=>'#22c55e'],
+                                    ['label'=>'Ditolak','value'=>$ditolak ?? 0,'percent'=>$persenDitolak ?? 0,'color'=>'#ef4444'],
+                                ];
+                                ?>
+
+                                <?php foreach($statuses as $s): ?>
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="small text-muted"><?= $s['label'] ?></span>
+                                        <span class="fw-semibold"><?= $s['value'] ?></span>
+                                    </div>
+                                    <div class="clean-progress">
+                                        <div class="clean-progress-bar" 
+                                            style="width: <?= $s['percent'] ?>%; background: <?= $s['color'] ?>;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
-                        <h4 class="mb-3">$35,078 <span class="badge bg-light-danger border border-danger"><i
-                                class="ti ti-trending-down"></i> 27.4%</span></h4>
-                        <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span> this year
-                        </p>
+
+
+                        <!-- ACTIVITY -->
+                        <div class="card dashboard-card mt-4">
+                            <div class="card-body">
+                                <div class="section-title mb-3">Quick Action</div>
+
+                                <div class="d-flex flex-wrap gap-3">
+
+                                    <a href="<?= site_url('/kapal/index') ?>" 
+                                    class="btn btn-primary quick-btn px-4">
+                                        <i class="ti ti-plus me-2"></i> Tambah Kapal
+                                    </a>
+
+                                    <a href="<?= site_url('/kelola-pesanan/index') ?>" 
+                                    class="btn btn-success quick-btn px-4">
+                                        <i class="ti ti-folder me-2"></i> Kelola Pemesanan
+                                    </a>
+
+                                    <a href="<?= site_url('/akun_pemilik_kapal/index') ?>" 
+                                    class="btn btn-warning quick-btn px-4">
+                                        <i class="ti ti-user-plus me-2"></i> Tambah Pemilik
+                                    </a>
+
+                                    <a href="<?= site_url('/akun_pemesan/index') ?>" 
+                                    class="btn btn-info quick-btn px-4 text-white">
+                                        <i class="ti ti-users me-2"></i> Data Pemesan
+                                    </a>
+
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
+
+
                 </div>
 
-                <div class="col-md-12 col-xl-8">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Unique Visitor</h5>
-                        <ul class="nav nav-pills justify-content-end mb-0" id="chart-tab-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="chart-tab-home-tab" data-bs-toggle="pill" data-bs-target="#chart-tab-home"
-                            type="button" role="tab" aria-controls="chart-tab-home" aria-selected="true">Month</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="chart-tab-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#chart-tab-profile" type="button" role="tab" aria-controls="chart-tab-profile"
-                            aria-selected="false">Week</button>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                        <div class="tab-content" id="chart-tab-tabContent">
-                            <div class="tab-pane" id="chart-tab-home" role="tabpanel" aria-labelledby="chart-tab-home-tab"
-                            tabindex="0">
-                            <div id="visitor-chart-1"></div>
-                            </div>
-                            <div class="tab-pane show active" id="chart-tab-profile" role="tabpanel"
-                            aria-labelledby="chart-tab-profile-tab" tabindex="0">
-                            <div id="visitor-chart"></div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-                    <h5 class="mb-3">Income Overview</h5>
-                    <div class="card">
-                        <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
-                        <h3 class="mb-3">$7,650</h3>
-                        <div id="income-overview-chart"></div>
-                        </div>
-                    </div>
-                </div>                        
             </div>
-        </div>
+        </div>        
     </div>
 
 

@@ -74,7 +74,17 @@ class AkunAdminController extends BaseController
 
     public function hapus_akun($id)
     {
-        $this->adminModel->delete($id);
-        return redirect()->to('/akun_admin/index');
+        // cek apakah masih ada kapal yang dimiliki
+        $kapal = db_connect()->table('kapal')->where('id_pemilik', $id)->countAllResults();
+
+        if ($kapal > 0) {
+            return redirect()->to('/akun_pemilik_kapal/index')
+                            ->with('error', 'Pemilik tidak dapat dihapus karena masih memiliki data kapal.');
+        }
+
+        // jika aman → hapus
+        $this->pemilikModel->delete($id);
+        return redirect()->to('/akun_pemilik_kapal/index')->with('success', 'Akun berhasil dihapus.');
     }
+
 }

@@ -3,7 +3,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Home | Mantis Bootstrap 5 Admin Template</title>
+    <title>Dashboard Admin | Sistem Pemesanan Kapal Ke Beras Basah</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,6 @@
     <link rel="icon" href="<?= base_url('assets/gambar/logo.png') ?>" type="image/x-icon">
 
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -35,6 +34,79 @@
             font-size: 1.8rem;
             color: #0077b6 !important;
         }
+
+.hover-shadow:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.card {
+    transition: all 0.3s ease;
+}
+
+/* ===== DASHBOARD MODERN STYLE ===== */
+
+.dashboard-card {
+    border-radius: 12px !important;
+    border: 1px solid #eef1f6;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+    background: #ffffff;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.bg-soft-primary { background: rgba(59,130,246,0.1); color:#3b82f6; }
+.bg-soft-success { background: rgba(34,197,94,0.1); color:#22c55e; }
+.bg-soft-warning { background: rgba(245,158,11,0.1); color:#f59e0b; }
+.bg-soft-danger  { background: rgba(239,68,68,0.1); color:#ef4444; }
+
+.section-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.clean-progress {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.clean-progress-bar {
+    height: 6px;
+    border-radius: 10px;
+}
+
+.quick-btn {
+    border-radius: 10px !important;
+    font-weight: 500;
+}
+
     </style>
 
 </head>
@@ -53,7 +125,7 @@
     <nav class="pc-sidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="<?= site_url('/admin/index') ?>"  class="b-brand text-primary navbar-brand">
+                <a href="<?= site_url('/admin/dashboard') ?>"  class="b-brand text-primary navbar-brand">
                     <img src="<?= base_url('assets/gambar/logolayarbasah.png') ?>" class="img-fluid w-25" alt="logo layar basah">
                     layar basah
                 </a>
@@ -62,39 +134,32 @@
             <div class="navbar-content">
                 <ul class="pc-navbar">
                     <li class="pc-item">
-                        <a href="<?= site_url('/admin/index') ?>" class="pc-link">
+                        <a href="<?= site_url('/admin/dashboard') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
                     </li>
                     <li class="pc-item pc-hasmenu">
-                        <a href="#" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span>
-                            <span class="pc-mtext">
-                                Kelola Akun
-                            </span>
+                        <a href="#" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-menu"></i></span>
+                            <span class="pc-mtext">Kelola Akun</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_admin/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
+                            <li class="pc-item">
+                                <a class="pc-link" href="<?= site_url('admin/kelola-akun/admin') ?>">
+                                    <span class="pc-micon"><i class="ti ti-user"></i></span>
                                     Akun Admin
                                 </a>
                             </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemilik_kapal/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
+                            <li class="pc-item">
+                                <a class="pc-link" href="<?= site_url('admin/kelola-akun/pemilik-kapal') ?>">
+                                    <span class="pc-micon"><i class="ti ti-users"></i></span>
                                     Akun Pemilik Kapal
                                 </a>
-                            </li>
-                            <li class="pc-item pc-hasmenu">
-                                <a class="pc-link" href="<?= site_url('/akun_pemesan/index') ?>">
-                                    <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                                    Akun Pemesan
-                                </a>
-                            </li>                        
+                            </li>                      
                         </ul>
-                    </li>                   
+                    </li>                  
                     <li class="pc-item">
                         <a href="<?= site_url('/kapal/index') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-ship"></i></span>
@@ -108,11 +173,17 @@
                         </a>
                     </li>    
                     <li class="pc-item">
+                        <a href="../dashboard/index.html" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-file-report"></i></span>
+                            <span class="pc-mtext">Laporan</span>
+                        </a>
+                    </li>     
+                    <li class="pc-item">
                         <a href="<?= site_url('/login/logout') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-file-report"></i></span>
                             <span class="pc-mtext">Logout</span>
                         </a>
-                    </li>    
+                    </li>     
                     <!-- <li class="pc-item pc-hasmenu">
                         <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">Menu
                             levels</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -192,10 +263,13 @@
 
     <div class="pc-container">
         <div class="pc-content">
-            <div class="row">
-                <?= $this->renderSection('content'); ?>                      
+
+            <div class="row justify-content-center">
+
+                <?= $this->renderSection('content'); ?> 
+
             </div>
-        </div>
+        </div>        
     </div>
 
 
@@ -211,12 +285,6 @@
     <script src="<?= base_url() ?>assets/mantis/js/pcoded.js"></script>
     <script src="<?= base_url() ?>assets/mantis/js/plugins/feather.min.js"></script>
   
-    <!-- Bootstrap JS & dependencies (Popper) CDN -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Bootstrap Icons CDN (optional, untuk icon) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
   
 </body>
 

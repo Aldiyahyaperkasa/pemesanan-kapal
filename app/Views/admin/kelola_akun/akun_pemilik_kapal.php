@@ -1,6 +1,14 @@
 <?= $this->extend('admin/layout'); ?>
 <?= $this->section('content'); ?>
 
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('success')): ?>
+    <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+<?php endif; ?>
+
 <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold text-primary">Kelola Akun Pemilik Kapal</h3>        

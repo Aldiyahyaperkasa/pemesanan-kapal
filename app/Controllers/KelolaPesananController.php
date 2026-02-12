@@ -19,15 +19,15 @@ class KelolaPesananController extends Controller
         $data['selectedKapal'] = $kapalId;
         $data['pemesananList'] = [];
 
-if ($kapalId) {
-    $data['pemesananList'] = $pemesananModel
-        ->select('pemesanan.*, kapal.nama_kapal')
-        ->join('kapal', 'kapal.id_kapal = pemesanan.id_kapal')
-        ->where('pemesanan.id_kapal', $kapalId)
-        ->where('status_pemilik', 'diterima')
-        ->orderBy('pemesanan.created_at', 'DESC')
-        ->findAll();
-}
+        if ($kapalId) {
+            $data['pemesananList'] = $pemesananModel
+                ->select('pemesanan.*, kapal.nama_kapal')
+                ->join('kapal', 'kapal.id_kapal = pemesanan.id_kapal')
+                ->where('pemesanan.id_kapal', $kapalId)
+                ->where('status_pemilik', 'diterima')
+                ->orderBy('pemesanan.created_at', 'DESC')
+                ->findAll();
+        }
 
         return view('admin/kelola_pemesanan/kelola_pemesanan', $data);
     }
