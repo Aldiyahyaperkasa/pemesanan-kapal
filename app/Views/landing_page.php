@@ -186,9 +186,9 @@
           <li class="nav-item"><a class="nav-link" href="#kapal">Kapal</a></li>
           <li class="nav-item"><a class="nav-link" href="#panduan">Panduan</a></li>
           <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
-          <!-- <a class="btn btn-login ms-2" href="<?= base_url('LoginController'); ?>">
+          <a class="btn btn-login ms-2" href="<?= base_url('login'); ?>">
               <i class="bi bi-box-arrow-in-right me-1"></i> Daftar/Login
-          </a>           -->
+          </a>          
         </ul>
       </div>
     </div>

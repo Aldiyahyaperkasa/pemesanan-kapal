@@ -14,6 +14,7 @@ class KapalModel extends Model
         'jenis_kapal',
         'harga',
         'max_penumpang',
+        'foto_kapal',
         'deskripsi',
         'tersedia'
     ];

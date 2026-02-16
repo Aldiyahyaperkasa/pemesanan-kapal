@@ -114,6 +114,8 @@ Terima kasih.";
     public function cekBooking($kode)
     {
         $booking = $this->pemesananModel
+            ->select('pemesanan.*, kapal.nama_kapal')
+            ->join('kapal', 'kapal.id_kapal = pemesanan.id_kapal')
             ->where('kode_booking', $kode)
             ->first();
 
@@ -125,4 +127,53 @@ Terima kasih.";
             'booking' => $booking
         ]);
     }
+// ==============================
+// UPLOAD BUKTI DP
+// ==============================
+public function uploadBuktiDP()
+{
+    $kodeBooking = $this->request->getPost('kode_booking');
+
+    $booking = $this->pemesananModel
+        ->where('kode_booking', $kodeBooking)
+        ->first();
+
+    if (!$booking) {
+        return redirect()->back()->with('error', 'Data booking tidak ditemukan');
+    }
+
+    $file = $this->request->getFile('bukti_bayar');
+
+    if (!$file->isValid()) {
+        return redirect()->back()->with('error', 'File tidak valid');
+    }
+
+    // Generate nama file unik
+    $newName = 'DP-' . $kodeBooking . '-' . time() . '.' . $file->getExtension();
+
+    // Simpan file ke folder public/uploads/bukti_dp
+    $file->move(FCPATH . 'uploads/bukti_dp', $newName);
+
+    // Simpan ke tabel pembayaran
+    $this->db = \Config\Database::connect();
+
+    $this->db->table('pembayaran')->insert([
+        'id_pemesanan'     => $booking['id_pemesanan'],
+        'jenis_pembayaran' => 'dp',
+        'jumlah_bayar'     => $booking['nominal_dp'],
+        'metode'           => 'transfer',
+        'bukti_bayar'      => $newName,
+        'status_verifikasi'=> 'menunggu'
+    ]);
+
+    // Update status booking jadi dp_dibayar
+    $this->pemesananModel->update(
+        $booking['id_pemesanan'],
+        ['status_booking' => 'dp_dibayar']
+    );
+
+    return redirect()->to('/cek-booking/' . $kodeBooking)
+                     ->with('success', 'Bukti pembayaran berhasil diupload');
+}
+
 }

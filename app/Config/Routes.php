@@ -11,10 +11,12 @@ $routes->get('pemesanan/form/(:num)', 'Pemesanan\PemesananController::form/$1');
 $routes->post('pemesanan/simpan', 'Pemesanan\PemesananController::simpan');
 
 $routes->get('cek-booking/(:segment)', 'Pemesanan\PemesananController::cekBooking/$1');
+$routes->post('upload-bukti-dp', 'Pemesanan\PemesananController::uploadBuktiDP');
+
+
 
 $routes->get('login/', 'LoginController::index');
 $routes->post('login/submit', 'LoginController::submit');
-
 $routes->get('login/logout', 'LoginController::logout');
 
 // dashboard admin
@@ -42,19 +44,65 @@ $routes->group('admin/kelola-akun', ['namespace' => 'App\Controllers\Admin\Kelol
     $routes->get('pemilik-kapal/delete/(:num)', 'KelolaPemilikKapalController::delete/$1');
 });
 
+// ===============================
+// KELOLA KAPAL - ADMIN
+// ===============================
+$routes->group('admin/kelola-kapal', ['namespace' => 'App\Controllers\Admin\Kelola_Kapal'], function($routes){
+
+    $routes->get('/', 'KelolaKapalController::index');
+    $routes->get('create', 'KelolaKapalController::create');
+    $routes->post('store', 'KelolaKapalController::store');
+    $routes->get('edit/(:num)', 'KelolaKapalController::edit/$1');
+    $routes->post('update/(:num)', 'KelolaKapalController::update/$1');
+    $routes->get('delete/(:num)', 'KelolaKapalController::delete/$1');
+
+});
+
+// ===============================
+// KELOLA PEMESANAN - ADMIN
+// ===============================
+$routes->group('admin/kelola-pesanan', ['namespace' => 'App\Controllers\Admin\Kelola_Pesanan'], function($routes){
+
+    $routes->get('/', 'KelolaPesananController::index');
+    $routes->get('setujui/(:num)', 'KelolaPesananController::setujui/$1');
+    $routes->post('tolak/(:num)', 'KelolaPesananController::tolak/$1');
+    $routes->get('dp-valid/(:num)', 'KelolaPesananController::dpValid/$1');
+    $routes->post('dp-tolak/(:num)', 'KelolaPesananController::dpTolak/$1');
+    $routes->get('tiket/(:any)', 'TiketController::index/$1');
+
+});
+
+// ===============================
+// BUSINESS REPORTS - ADMIN
+// ===============================
+$routes->group('admin/laporan', ['namespace' => 'App\Controllers\Admin\Laporan'], function($routes){
+
+    $routes->get('executive', 'ExecutiveController::index');
+    $routes->get('executive/export', 'ExecutiveController::export');
+
+    $routes->get('financial', 'FinancialController::index');
+    $routes->get('financial/export', 'FinancialController::export');
+
+    $routes->get('operational', 'OperationalController::index');
+    $routes->get('operational/export', 'OperationalController::export');
+
+    $routes->get('cashflow', 'CashflowController::index');
+    $routes->get('cashflow/export', 'CashflowController::export');
+
+});
 
 // dibawah ini adalah kode kode lama
 
 
 // kelola akun admin
-$routes->group('akun_admin', function($routes) {
-    $routes->get('index', 'AkunAdminController::index');
-    $routes->get('tambah', 'AkunAdminController::form_tambah');
-    $routes->post('tambah', 'AkunAdminController::tambah_akun');
-    $routes->get('edit/(:num)', 'AkunAdminController::form_edit/$1');
-    $routes->post('edit/(:num)', 'AkunAdminController::edit_akun/$1');
-    $routes->get('hapus/(:num)', 'AkunAdminController::hapus_akun/$1');
-});
+// $routes->group('akun_admin', function($routes) {
+//     $routes->get('index', 'AkunAdminController::index');
+//     $routes->get('tambah', 'AkunAdminController::form_tambah');
+//     $routes->post('tambah', 'AkunAdminController::tambah_akun');
+//     $routes->get('edit/(:num)', 'AkunAdminController::form_edit/$1');
+//     $routes->post('edit/(:num)', 'AkunAdminController::edit_akun/$1');
+//     $routes->get('hapus/(:num)', 'AkunAdminController::hapus_akun/$1');
+// });
 
 
 

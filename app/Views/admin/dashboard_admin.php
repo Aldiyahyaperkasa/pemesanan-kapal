@@ -161,23 +161,54 @@
                         </ul>
                     </li>            
                     <li class="pc-item">
-                        <a href="<?= site_url('/kapal/index') ?>" class="pc-link">
+                        <a href="<?= site_url('admin/kelola-kapal') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-ship"></i></span>
                             <span class="pc-mtext">Kelola Kapal</span>
                         </a>
                     </li>    
                     <li class="pc-item">
-                        <a href="<?= site_url('/kelola-pesanan/index') ?>" class="pc-link">
+                        <a href="<?= site_url('admin/kelola-pesanan') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-folder-plus"></i></span>
                             <span class="pc-mtext">Kelola Pemesanan</span>
                         </a>
                     </li>    
-                    <li class="pc-item">
-                        <a href="../dashboard/index.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-file-report"></i></span>
-                            <span class="pc-mtext">Laporan</span>
-                        </a>
-                    </li>     
+<li class="pc-item pc-hasmenu">
+    <a href="javascript:void(0)" class="pc-link">
+        <span class="pc-micon">
+            <i class="ti ti-chart-arcs"></i>
+        </span>
+        <span class="pc-mtext">Laporan Bisnis</span>
+        <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
+    </a>
+    <ul class="pc-submenu">
+
+        <li class="pc-item">
+            <a href="<?= base_url('admin/laporan/executive') ?>" class="pc-link">
+                Ringkasan Eksekutif
+            </a>
+        </li>
+
+        <li class="pc-item">
+            <a href="<?= base_url('admin/laporan/financial') ?>" class="pc-link">
+                Audit Keuangan & Pendapatan
+            </a>
+        </li>
+
+        <li class="pc-item">
+            <a href="<?= base_url('admin/laporan/operational') ?>" class="pc-link">
+                Kinerja Operasional Armada
+            </a>
+        </li>
+
+        <li class="pc-item">
+            <a href="<?= base_url('admin/laporan/cashflow') ?>" class="pc-link">
+                Laporan Arus Kas Masuk
+            </a>
+        </li>
+
+    </ul>
+</li>
+
                     <li class="pc-item">
                         <a href="<?= site_url('/login/logout') ?>" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-file-report"></i></span>

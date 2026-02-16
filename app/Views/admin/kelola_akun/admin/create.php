@@ -3,7 +3,13 @@
 
 <style>
 /* ===== PREMIUM FORM LAYOUT ===== */
-
+.page-header {
+    margin-bottom: 5px;
+}
+.breadcrumb-modern {
+    font-size: 13px;
+    color: #6b7280;
+}
 .form-wrapper {
     max-width: 900px;
     margin: 40px auto;
@@ -118,7 +124,11 @@
     background: #1d4ed8;
 }
 </style>
-
+<div class="page-header">
+    <div class="breadcrumb-modern">
+        Dashboard / Manajemen Akun Admin / Tambah
+    </div>
+</div>
 <div class="col-12">
 
     <div class="form-wrapper">

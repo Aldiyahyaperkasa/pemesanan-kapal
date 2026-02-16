@@ -4,6 +4,13 @@
 <style>
 /* ===== MODERN ACCOUNT MANAGEMENT ===== */
 /* CARD */
+.page-header {
+    margin-bottom: 5px;
+}
+.breadcrumb-modern {
+    font-size: 13px;
+    color: #6b7280;
+}
 .modern-card {
     background: #ffffff;
     border-radius: 12px;
@@ -136,7 +143,11 @@
 }
 
 </style>
-
+<div class="page-header">
+    <div class="breadcrumb-modern">
+        Dashboard / Manajemen Akun Admin
+    </div>
+</div>
 <div class="col-12">
 
     <div class="modern-card">
